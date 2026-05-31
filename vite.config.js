@@ -7,24 +7,34 @@ export default defineConfig({
     react(),
     VitePWA({
       registerType: 'autoUpdate',
+      // This includes the service worker assets in your build automatically
+      includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'maskable-icon.png'],
       manifest: {
         name: 'Grow Together Team',
         short_name: 'GTT',
         description: 'GTT Mutual Financial Security Portal',
-        theme_color: '#2563EB', // Matches your light theme accent
+        theme_color: '#2563EB',
         background_color: '#F5F7FA',
-        display: 'standalone', // Crucial: Removes the mobile browser URL bar
+        display: 'standalone', 
         orientation: 'portrait',
         icons: [
           {
-            src: 'my-logo.png', // The image you added to your public folder earlier
+            src: '/pwa-192x192.png', // Leading slash is safer for routing
             sizes: '192x192',
-            type: 'image/png'
+            type: 'image/png',
+            purpose: 'any'
           },
           {
-            src: 'my-logo.png',
+            src: '/pwa-512x512.png',
             sizes: '512x512',
-            type: 'image/png'
+            type: 'image/png',
+            purpose: 'any'
+          },
+          {
+            src: '/maskable-icon.png',
+            sizes: '512x512',
+            type: 'image/png',
+            purpose: 'maskable' // Required for Android home screens to prevent ugly borders
           }
         ]
       }
